@@ -23,4 +23,14 @@ class Product extends Model
     {
         return $this->belongsTo(ProductCategory::class, 'product_category_id', 'id');
     }
+
+    public function received()
+    {
+        return $this->hasMany(ReceivedProduct::class, 'product_id', 'id');
+    }
+
+    public function sold()
+    {
+        return $this->hasMany(SoldProduct::class, 'product_id', 'id');
+    }
 }

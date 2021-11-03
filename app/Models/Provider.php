@@ -6,29 +6,25 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Client extends Model
+class Provider extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'document_type',
-        'docunent_id',
         'name',
+        'description',
+        'paymentinfo',
         'email',
         'phone',
-        'last_purchase',
-        'total_purchase',
-        'total_paid',
-        'balance',
     ];
 
-    public function sale()
+    public function receipt()
     {
-        return $this->hasMany(Sale::class, 'client_id', 'id');
+        return $this->hasMany(Receipt::class, 'provider_id', 'id');
     }
 
     public function transaction()
     {
-        return $this->hasMany(Transaction::class, 'clietn_id', 'id');
+        return $this->hasMany(Transaction::class, 'provider_id', 'id');
     }
 }
