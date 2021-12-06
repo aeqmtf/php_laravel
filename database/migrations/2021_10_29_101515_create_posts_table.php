@@ -22,6 +22,10 @@ class CreatePostsTable extends Migration
             $table->string('source')->nullable();
             $table->bigInteger('creator');
             $table->timestamps();
+
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users');
         });
     }
 
